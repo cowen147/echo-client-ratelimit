@@ -8,6 +8,7 @@ import play.api.libs.ws.ning.NingAsyncHttpClientConfigBuilder
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
 import scala.concurrent.Future
+import controllers.action.RateLimit
 
 class Application extends Controller {
 
@@ -15,15 +16,15 @@ class Application extends Controller {
     Ok("Your application is ready")
   }
 
-  def getRate() = Action.async {
+  def makeAPICall() = RateLimit.async {
     val holder: WSRequestHolder = WS.url("http://localhost:9000/echo360/api/v1/requests/123456")
     val futureResponse: Future[WSResponse] = holder.post("")
 
     futureResponse.map {
       response =>
-        Logger.debug(response.body)
+        Logger.info(response.body)
         val body = response.body
-        Ok(s"Success: getRate(): $body")
+        Ok(s"Success: makeAPICall(): $body")
     }
   }
 }

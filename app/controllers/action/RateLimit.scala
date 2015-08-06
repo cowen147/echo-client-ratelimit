@@ -8,8 +8,8 @@ import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.concurrent.Execution
 import play.api.mvc.{ActionBuilder, Request, Result}
-import controllers.action.RateLimit
 import scala.concurrent.{ExecutionContext, Future}
+import controllers.action.RateLimit
 
 object RateLimit extends ActionBuilder[Request] {
   def invokeBlock[A](request: Request[A], block: (Request[A]) => Future[Result]) = {

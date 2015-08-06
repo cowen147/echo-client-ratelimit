@@ -6,8 +6,8 @@ import play.api.Play.current
 import play.api.libs.ws._
 import play.api.libs.ws.ning.NingAsyncHttpClientConfigBuilder
 import play.api.Logger
+import play.api.libs.concurrent.Execution.Implicits._
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class Application extends Controller {
 

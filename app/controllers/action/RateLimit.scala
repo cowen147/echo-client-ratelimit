@@ -20,7 +20,8 @@ object RateLimit extends ActionBuilder[Request] {
 
     futureResponse.map {
       response =>
-        Logger.info("************")
+        // Check rate limit
+        Logger.info("Check rate limit ************")
         block(request)
     }
   }

@@ -1,4 +1,4 @@
-name := """echo-client-ratelimitx"""
+name := """echo-client-ratelimit"""
 
 version := "1.0-SNAPSHOT"
 

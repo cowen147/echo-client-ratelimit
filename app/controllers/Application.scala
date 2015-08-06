@@ -16,7 +16,7 @@ class Application extends Controller {
     Ok("Your application is ready")
   }
 
-  def makeAPICall() = RateLimit.async {
+  def makeAPICall1() = RateLimit.async {
     val holder: WSRequestHolder = WS.url("http://localhost:9000/echo360/api/v1/requests/123456")
     val futureResponse: Future[WSResponse] = holder.post("")
 
@@ -24,7 +24,16 @@ class Application extends Controller {
       response =>
         Logger.info(response.body)
         val body = response.body
-        Ok(s"Success: makeAPICall(): $body")
+        Ok(s"Success: makeAPICall1(): $body")
+    }
+  }
+
+  def makeAPICall2() = RateLimit.async {
+    val futureResponse = scala.concurrent.Future { "future response" }
+
+    futureResponse.map {
+      response =>
+        Ok(s"Success: makeAPICall2(): $response")
     }
   }
 }

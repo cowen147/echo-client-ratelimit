@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index
 GET     /makeapicall-1              controllers.Application.makeAPICall1
 GET     /makeapicall-2              controllers.Application.makeAPICall2
+GET     /makeapicall-3              controllers.Application.makeAPICall3
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

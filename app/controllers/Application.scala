@@ -4,7 +4,6 @@ import play.api._
 import play.api.mvc._
 import play.api.Play.current
 import play.api.libs.ws._
-import play.api.libs.ws.ning.NingAsyncHttpClientConfigBuilder
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
 import scala.concurrent.Future
@@ -35,5 +34,9 @@ class Application extends Controller {
       response =>
         Ok(s"Success: makeAPICall2(): $response")
     }
+  }
+
+  def makeAPICall3() = Action.async {
+     Future.successful(Forbidden("Rate limit exceeded"))
   }
 }

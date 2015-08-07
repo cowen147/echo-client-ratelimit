@@ -4,7 +4,7 @@ import play.api.Play.current
 import play.api.libs.ws._
 import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
-import play.api.mvc.{ActionBuilder, Request, WrappedRequest, Result}
+import play.api.mvc.{ActionBuilder, Request, WrappedRequest, Result, Results}
 import scala.concurrent.{Future}
 import controllers.action.RateLimit
 
@@ -24,9 +24,7 @@ object RateLimit extends ActionBuilder[RateLimitRequest] {
         if (body == "Yes") {
           block(new RateLimitRequest(request))
         } else {
-          // Forbidden("Rate limit exceeded")
-          // Future.successful(Forbidden("Rate limit exceeded"))
-          block(new RateLimitRequest(request))
+          Future.successful(Results.Forbidden("Rate limit exceeded"))
         }
     }
   }
